@@ -2,7 +2,7 @@
 //Recordando que los thunks son funciones que retornan otras funciones
 // y que estas últimas pueden hacer dispatch de acciones asíncronas.
 
-import { signInWithGoogle } from "../../firebase/providers";
+import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from "../../firebase/providers";
 import { checkingCredentials, login, logout } from "./";
 
 export const checkingAuthentication = () => {
@@ -31,3 +31,40 @@ export const startGoogleSignIn = () => {
         dispatch( login( result ) );
     }
 }
+
+export const startCreatingUserWithEmailPassword = ({ email, password, displayName }) => {
+    return async( dispatch ) => {
+
+        dispatch( checkingCredentials() );
+
+        const { ok, uid, photoUrl, errorMessage } = await registerUserWithEmailPassword({ email, password, displayName });
+
+        if( !ok ) return dispatch( logout({ errorMessage }) );
+
+        dispatch( login({ uid, displayName, email, photoUrl }) );
+    }
+};
+
+export const startLoginWithEmailPassword = ({ email, password }) => {
+    return async( dispatch ) => {
+
+        dispatch( checkingCredentials() );
+        
+        const { ok, uid, photoUrl, errorMessage } = await loginWithEmailPassword({ email, password });
+        // console.log(result);
+
+        if( !ok ) return dispatch( logout({ errorMessage }) );
+
+        dispatch( login({ uid, displayName, email, photoUrl }) );
+    }
+
+};
+
+export const startLogout = () => {
+
+    return async( dispatch ) => {
+        
+        await logoutFirebase();
+        dispatch( logout() );
+    }
+};
