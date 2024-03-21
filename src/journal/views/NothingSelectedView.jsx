@@ -1,11 +1,11 @@
 import { Grid, Typography } from "@mui/material";
-import { JournalLayout } from "../layout/JournalLayout";
 import { StarOutline } from "@mui/icons-material";
 
 
 export const NothingSelectedView = () => {
     return (
         <Grid
+            className='animate__animated animate__fadeIn animate__faster'
             container
             spacing={0}
             direction="column"
