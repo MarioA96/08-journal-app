@@ -1,6 +1,6 @@
 import { collection, doc, setDoc } from 'firebase/firestore/lite';
 import { FirebaseDB } from '../../firebase/config';
-import { addNewEmptyNote, setActiveNote, savingNewNote, setNotes} from './';
+import { addNewEmptyNote, setActiveNote, savingNewNote, setNotes, setSaving, noteUpdated} from './';
 import { loadNotes } from '../../helpers/loadNotes';
 
 
@@ -47,3 +47,25 @@ export const startLoadingNotes = () => {
 
 };
 
+export const startSavingNote = () => {
+
+    return async( dispatch, getState ) => {
+        
+        dispatch( setSaving() );
+
+        const { uid } = getState().auth;
+        const { active:note } = getState().journal;
+
+        const noteToFireStore = { ...note };
+        delete noteToFireStore.id;
+
+        // console.log(noteToFireStore);
+        // Esto es para que no se guarde el id en el objeto que se guarda en Firestore
+        //TODO Las sig lineas se deberian envolver en un try catch
+        const docRef = doc( FirebaseDB, `${ uid }/journal/notes/${ note.id }` );
+        await setDoc( docRef, noteToFireStore, { merge: true } );
+
+        dispatch( noteUpdated( note ) );
+    };
+
+};

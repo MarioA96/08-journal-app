@@ -33,6 +33,7 @@ export const journalSlice = createSlice({
         setActiveNote: (state, action) => {
             // Funcion pura sincrona
             state.active = action.payload;
+            state.messageSaved = '';
         },
         setNotes: (state, action) => {
             // Funcion pura sincrona
@@ -40,9 +41,19 @@ export const journalSlice = createSlice({
         },
         setSaving: (state) => {
             // Funcion pura sincrona
+            state.isSaving = true;
+            state.messageSaved = '';
         },
-        updateNote: (state, action) => {
+        noteUpdated: (state, action) => { // payload: note
             // Funcion pura sincrona
+            state.isSaving = false;
+            state.notes = state.notes.map( 
+                note => note.id === action.payload.id 
+                        ? action.payload 
+                        : note 
+            );
+
+            state.messageSaved = `${ action.payload.title }, actualizada correctamente`;
         },
         deleteNoteById: (state, action) => {
             // Funcion pura sincrona
@@ -58,6 +69,6 @@ export const {
     setActiveNote,
     setNotes,
     setSaving,
-    updateNote,
+    noteUpdated,
     deleteNoteById
  } = journalSlice.actions;

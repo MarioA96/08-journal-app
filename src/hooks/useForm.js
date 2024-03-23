@@ -10,6 +10,13 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
 
     }, [formState]);
 
+    //Creamos un nuevo efecto para el hook cuando se actualiza el formulario inicial
+    useEffect(() => {
+        setFormState( initialForm );
+    
+    }, [initialForm])
+    
+
     const isFormValid = useMemo( () => {
 
         for ( const formValue of Object.keys( formValidation ) ) {

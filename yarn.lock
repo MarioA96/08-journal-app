@@ -3621,6 +3621,7 @@ __metadata:
     react-dom: ^18.2.0
     react-redux: ^9.1.0
     react-router-dom: 6
+    sweetalert2: ^11.10.7
     vite: ^5.1.4
   languageName: unknown
   linkType: soft
@@ -4909,6 +4910,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"sweetalert2@npm:^11.10.7":
+  version: 11.10.7
+  resolution: "sweetalert2@npm:11.10.7"
+  checksum: 5e5739124ac96d6044352a4054b9630e6fbb97d996c5b69e81d36dc2bfd000833201c2c3b194fb4cb4c7ca1805d15c3438ef676856dad5ca75d98c669929f5fb
   languageName: node
   linkType: hard
 
