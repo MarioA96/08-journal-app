@@ -3,6 +3,7 @@
 // y que estas últimas pueden hacer dispatch de acciones asíncronas.
 
 import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from "../../firebase/providers";
+import { clearNotesLogout } from "../journal";
 import { checkingCredentials, login, logout } from "./";
 
 export const checkingAuthentication = () => {
@@ -65,6 +66,10 @@ export const startLogout = () => {
     return async( dispatch ) => {
         
         await logoutFirebase();
+        // Esta linea debajo podria mejorarse, ya que estamos haciendo dispatch a otro slice.
+        // Una idea seria hacer un dispatch a una accion que haga dispatch a las acciones de los slices.
+        // Pero por mientras, lo dejaremos así.
+        dispatch( clearNotesLogout() );
         dispatch( logout() );
     }
 };
