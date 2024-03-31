@@ -16,14 +16,6 @@ const {
   VITE_APPID,
 } = getEnvironments();
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "your_apiKey",
-  authDomain: "your_authDomain",
-  projectId: "your_projectId",
-  storageBucket: "your_storageBucket",
-  messagingSenderId: "your_messagingSenderId",
-  appId: "your_appId"
 // Dev / Prod
 // .env
 // Testing
