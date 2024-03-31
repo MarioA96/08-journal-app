@@ -1,5 +1,8 @@
 # React + Vite
 
+Debes agregar tus propios archivos .env y .env.test en la raiz,
+dichos archivos deben contener la informacion como .env.template con tus datos de firebaseConfig de tu proyecto.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
