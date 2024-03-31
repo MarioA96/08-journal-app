@@ -29,7 +29,7 @@ export const LoginPage = () => {
 
         event.preventDefault();
 
-        console.log({ email, password })
+        // console.log({ email, password })
         dispatch( startLoginWithEmailPassword({ email, password }) );
     }
 
@@ -43,8 +43,11 @@ export const LoginPage = () => {
         
         <AuthLayout title="Iniciar sesión">
 
-            <form onSubmit={ onSubmit } className='animate__animated animate__fadeIn animate__faster'>
-
+            <form 
+                aria-label="submit-form" 
+                onSubmit={ onSubmit } 
+                className='animate__animated animate__fadeIn animate__faster'
+            >
                 <Grid container>
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
                         <TextField 
@@ -65,6 +68,9 @@ export const LoginPage = () => {
                             placeholder="Contraseña"
                             fullWidth
                             name="password"
+                            inputProps={{
+                                'data-testid': 'password'
+                            }}
                             value={ password }
                             onChange={ onInputChange }
                         />
@@ -100,6 +106,7 @@ export const LoginPage = () => {
                             disabled={ isAuthenticating }
                             variant="contained" 
                             fullWidth
+                            aria-label="google-btn"
                             onClick={ onGoogleSignIn }
                         >
                             <Google />
